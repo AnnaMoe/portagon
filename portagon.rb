@@ -13,24 +13,29 @@ REPAYMENT_INTERVAL_IN_YEARS = 1
 YEARS_TO_CALCULATE = 10
 
 # main function
-previous_date = INITIAL_DATE
-current_date = FIRST_REPAYMENT_DATE
-current_amount = INITIAL_AMOUNT
-for i in 0..YEARS_TO_CALCULATE do 
-  interest = InterestCalculator.compute_interest(
-    current_amount, 
-    INTEREST_RATE,
-    previous_date, 
-    current_date
-  )
+class Solution
+  def main  
+    previous_date = INITIAL_DATE
+    current_date = FIRST_REPAYMENT_DATE
+    current_amount = INITIAL_AMOUNT
+    for i in 0..YEARS_TO_CALCULATE do 
+      interest = InterestCalculator.compute_interest(
+        current_amount, 
+        INTEREST_RATE,
+        previous_date, 
+        current_date
+      )
 
-  repayment = RepaymentCalculator.compute_repayment(current_amount, REPAYMENT_PERCENTAGE)
+      repayment = RepaymentCalculator.compute_repayment(current_amount, REPAYMENT_PERCENTAGE)
 
-  new_amount = YearlyAmountCalculator.compute_yearly_amount(current_amount, repayment, interest)
+      new_amount = YearlyAmountCalculator.compute_yearly_amount(current_amount, repayment, interest)
 
-  puts "#{current_date} Previous Amount: #{current_amount}, Interest: #{interest}, Repayment: #{repayment}, New Amount: #{new_amount}"
-  # update values
-  current_amount = new_amount
-  previous_date = current_date
-  current_date = current_date.next_year
+      puts "#{current_date} Previous Amount: #{current_amount}, Interest: #{interest}, Repayment: #{repayment}, New Amount: #{new_amount}"
+      # update values
+      current_amount = new_amount
+      previous_date = current_date
+      current_date = current_date.next_year
+    end
+    current_amount
+  end
 end
