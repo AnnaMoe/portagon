@@ -18,7 +18,7 @@ class Solution
     previous_date = INITIAL_DATE
     current_date = FIRST_REPAYMENT_DATE
     current_amount = INITIAL_AMOUNT
-    for i in 0..YEARS_TO_CALCULATE do 
+    (0..YEARS_TO_CALCULATE).each do 
       interest = InterestCalculator.compute_interest(
         current_amount, 
         INTEREST_RATE,
