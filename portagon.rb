@@ -22,17 +22,17 @@ class Solution
 
   def main  
     (0..YEARS_TO_CALCULATE).each do 
-      interest = calculate_interest()
+      @interest = calculate_interest()
+      @repayment = calculate_repayment()
+      @new_amount = calculate_yearly_amount()
 
-      repayment = RepaymentCalculator.compute_repayment(@current_amount, REPAYMENT_PERCENTAGE)
-
-      new_amount = YearlyAmountCalculator.compute_yearly_amount(@current_amount, repayment, interest)
-
-      puts "#{@current_date} Previous Amount: #{@current_amount}, Interest: #{interest}, Repayment: #{repayment}, New Amount: #{new_amount}"
+      puts "#{@current_date} Previous Amount: #{@current_amount}, Interest: #{@interest}, Repayment: #{@repayment}, New Amount: #{@new_amount}"
       # update values
-      @current_amount = new_amount
+      
+      @current_amount = @new_amount
       @previous_date = @current_date
       @current_date = @current_date.next_year
+  
     end
     @current_amount
   end
@@ -45,5 +45,13 @@ class Solution
         @previous_date, 
         @current_date
       )
+  end
+
+  def calculate_repayment
+    RepaymentCalculator.compute_repayment(@current_amount, REPAYMENT_PERCENTAGE)
+  end
+
+  def calculate_yearly_amount
+    YearlyAmountCalculator.compute_yearly_amount(@current_amount, @repayment, @interest)
   end
 end
