@@ -27,7 +27,7 @@ class Solution
       @new_amount = calculate_yearly_amount()
 
       #puts "#{@current_date} Previous Amount: #{@current_amount}, Interest: #{@interest}, Repayment: #{@repayment}, New Amount: #{@new_amount}"
-      # update values
+      #update values
       
       @current_amount = @new_amount
       @previous_date = @current_date
@@ -49,7 +49,8 @@ class Solution
   end
 
   def calculate_repayment
-    RepaymentCalculator.compute_repayment(@current_amount, REPAYMENT_PERCENTAGE)
+    repayment_calculator = RepaymentCalculator.new(amount: @current_amount, repayment: REPAYMENT_PERCENTAGE)
+    repayment_calculator.compute_repayment
   end
 
   def calculate_yearly_amount

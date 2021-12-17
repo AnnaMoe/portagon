@@ -1,5 +1,10 @@
 class RepaymentCalculator
-  def self.compute_repayment(amount, repayment)
-    (amount * repayment).round(2)
+  def initialize(hash = {})
+    @amount = hash[:amount]
+    @repayment = hash[:repayment]
+  end
+
+  def compute_repayment
+    (@amount * @repayment).round(2)
   end
 end
