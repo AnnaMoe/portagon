@@ -26,7 +26,7 @@ class Solution
       @repayment = calculate_repayment()
       @new_amount = calculate_yearly_amount()
 
-      puts "#{@current_date} Previous Amount: #{@current_amount}, Interest: #{@interest}, Repayment: #{@repayment}, New Amount: #{@new_amount}"
+      #puts "#{@current_date} Previous Amount: #{@current_amount}, Interest: #{@interest}, Repayment: #{@repayment}, New Amount: #{@new_amount}"
       # update values
       
       @current_amount = @new_amount
@@ -39,12 +39,13 @@ class Solution
   
   private
   def calculate_interest
-    InterestCalculator.compute_interest(
-        @current_amount, 
-        INTEREST_RATE,
-        @previous_date, 
-        @current_date
+    interest_calculator = InterestCalculator.new(
+        amount: @current_amount, 
+        interest_rate: INTEREST_RATE,
+        start_date: @previous_date, 
+        end_date: @current_date
       )
+    interest_calculator.compute_interest
   end
 
   def calculate_repayment
