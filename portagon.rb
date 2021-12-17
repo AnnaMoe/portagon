@@ -54,6 +54,7 @@ class Solution
   end
 
   def calculate_yearly_amount
-    YearlyAmountCalculator.compute_yearly_amount(@current_amount, @repayment, @interest)
+    yearly_amount_calculator = YearlyAmountCalculator.new(amount: @current_amount, repayment: @repayment, interest: @interest )
+    yearly_amount_calculator.compute_yearly_amount
   end
 end
