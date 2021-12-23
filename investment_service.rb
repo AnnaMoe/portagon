@@ -5,7 +5,8 @@ require './yearly_amount_calculator.rb'
 
 
 # Configuration
-INTEREST_RATE = 0.05
+#INTEREST_RATE = 0.05
+# can put these ones also in initialize method:
 REPAYMENT_PERCENTAGE = 0.25
 REPAYMENT_INTERVAL_IN_YEARS = 1
 
@@ -37,7 +38,7 @@ class InvestmentService
   def calculate_interest
     interest_calculator = InterestCalculator.new(
         amount: @current_amount, 
-        interest_rate: INTEREST_RATE,
+        interest_rate: @interest_rate,
         start_date: @previous_date, 
         end_date: @current_date
       )
