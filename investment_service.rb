@@ -16,6 +16,7 @@ class InvestmentService
     @current_date = hash[:first_repayment_date]
     @current_amount = hash[:initial_amount]
     @years_to_calculate = hash[:years_to_calculate]
+    @interest_rate = hash[:interest_rate]
   end
 
   def calculate  
